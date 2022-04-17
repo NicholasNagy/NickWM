@@ -107,6 +107,11 @@ typedef struct {
 } Key;
 
 typedef struct {
+	void (*func)(const Arg *);
+	const Arg arg;
+} StartupScript;
+
+typedef struct {
 	const char *symbol;
 	void (*arrange)(Monitor *);
 } Layout;
@@ -1496,6 +1501,8 @@ restack(Monitor *m)
 void
 run(void)
 {
+
+	for (int i = 0; i < LENGTH(scripts); i++) scripts[i].func(&(scripts[i].arg));
 	XEvent ev;
 	/* main event loop */
 	XSync(dpy, False);

@@ -86,6 +86,11 @@ static const char *scrotcmd[]  = { "scrot", "-t", "25", NULL };
 static const char *scrotfocusedcmd[]  = { "scrot", "--focused", NULL };
 static const char *lockcmd[] = {"slock", NULL};
 
+static StartupScript scripts[] = {
+	/* function, argument */
+	{spawn, SHCMD("/home/nick/.dwm/managescreens.sh")}
+};
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{0, XK_Print, spawn, {.v=scrotcmd}},
